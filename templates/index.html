@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI News Hub</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+    <h1>📰 AI News Headline Hub</h1>
+
+    <form action="/search" method="post">
+        <input type="text" name="query" placeholder="Search news..." required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if query %}
+        <h2>Results for "{{ query }}"</h2>
+    {% endif %}
+
+    <div class="grid">
+        {% for article in articles %}
+            <div class="card">
+                <h3>{{ article.title }}</h3>
+
+                {% if article.urlToImage %}
+                    <img src="{{ article.urlToImage }}">
+                {% endif %}
+
+                <p>{{ article.description }}</p>
+
+                <a href="{{ article.url }}" target="_blank">Read More →</a>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+</body>
+</html>
